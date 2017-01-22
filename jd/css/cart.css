@@ -1,0 +1,296 @@
+/*在这里购物车不需要绝对定位，要取消定位*/
+body{
+    background-color: #f5f5f5;
+}
+.jd_topBar{
+    position: static;
+}
+/*头部通栏h3的样式*/
+.jd_topBar h3{
+      text-align: center;
+    height: 44px;
+    line-height: 44px;
+    /*去除粗体*/
+    font-weight: normal;
+    font-size: 16px;
+}
+/*安全提示信息*/
+.jd_safeTip{
+    width: 100%;
+    height: 34px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    line-height: 34px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+.jd_safeTip p{
+    /*因为p没有给宽高，所以默认和父盒子一样大小，可以把它变成行内块,目的是让下面的伪元素可以和p在一起*/
+    display: inline-block;
+    /*因为要使用伪元素来设置一个图标，子元素要绝对定位，那么父元素就要相对定位*/
+    position: relative;
+    padding-left: 23px;
+
+}
+.jd_safeTip p::before{
+    content: '';
+    position: absolute;
+    background: url("../images/safe_icon.png") no-repeat;
+    background-size: 18px 18px;
+    width: 18px;
+    height: 18px;
+    top: 8px;
+    left: 0;
+}
+/*购物商品主体部分*/
+/*公用的多选框*/
+.check_box{
+    width: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/*没被选中的复选框*/
+.check_box .jd_check_box{
+    display: block;
+    height: 34px;
+    width: 40px;
+    padding: 7px 10px;
+    background: url("../images/shop-icon.png") no-repeat;
+    background-size: 50px 100px;
+    background-position: 0 0;
+    background-origin: content-box;
+    background-clip: content-box;
+}
+/*被选中的复选框，就是在属性默认为checked*/
+/*下面最大的主体盒子*/
+.check_box .jd_check_box[checked]{
+   /*被选中，只需要设置它的position值*/
+    background-position: -25px 0;
+}
+.jd_shop{
+    margin-top: 10px;
+    background-color: #fff;
+    /*上下边框*/
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+/*商品的title*/
+.jd_shop .jd_shop_tit{
+    height: 34px;
+    line-height: 34px;
+    position: relative;
+}
+.jd_shop_tit_right{
+    font-size: 12px;
+    padding-left: 40px;
+}
+.jd_shop .jd_shop_tit .jd_shop_tit_right img{
+    width: 15px;
+    height: 15px;
+    float: left;
+    margin-top: 10px;
+}
+.jd_shop .jd_shop_tit .jd_shop_tit_right span{
+    line-height: 34px;
+    float: left;
+    font-size: 15px;
+    margin-left: 5px;
+}
+/*商品的内容最大盒子*/
+.jd_shop_con {
+
+}
+/*商品分类盒子*/
+.jd_shop_con .product{
+    height: 100px;
+    padding: 10px 0;
+    border-top: 1px solid #e0e0e0;
+    background-color: #fff;
+    position: relative;
+}
+.product_box_right{
+    padding-left: 40px;
+}
+.product_box_right .img_box{
+    display: block;
+    width: 80px;
+    height: 80px;
+    float: left;
+}
+.product_box_right .img_box img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.product_box_right .info_box{
+    /*盒子两边分的自适应方法，有两种，一种是左边不占位，右边盒子百分百，然后用padding值挤掉浮动起来那部分的宽度
+    第二种方法：用文字围绕图片的方式来做，左边的盒子用float：left，右边的盒子用overflow：hidden就可以隔离开*/
+    overflow: hidden;
+    padding: 0 10px;
+}
+.product_box_right .info_box .name{
+    display: block;
+    height: 30px;
+    width: 100%;
+    line-height: 15px;
+    overflow: hidden;
+}
+.product_box_right .info_box .money{
+    padding: 4px 0;
+    font-size: 12px;
+}
+.info_box .option{
+
+}
+.info_box .option .change_box{
+  float: left;
+}
+.info_box .option .change_box span{
+    width: 32px;
+    height: 24px;
+    border: 1px solid #e0e0e0;
+    float: left;
+    text-align: center;
+    line-height: 24px;
+}
+.info_box .option .change_box input{
+    width: 32px;
+    height: 24px;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    float: left;
+}
+
+.info_box .option .delete_box{
+    float: right;
+}
+.info_box .option .delete_box span:first-child{
+    display: block;
+    background: url("../images/delete_up.png") no-repeat;
+    background-size: 20px 5px;
+    width: 20px;
+    height: 5px;
+    margin-left: -1px;
+
+}
+.info_box .option .delete_box span:last-child{
+    display: block;
+    background: url("../images/delete_down.png") no-repeat;
+    background-size: 18px 18px;
+    width: 18px;
+    height: 18px;
+    margin-top: -2px;
+}
+
+/*弹框*/
+.jd_win{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: 1000;
+    display: none;
+}
+.jd_win .jd_win_box{
+    width: 80%;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 0 10px;
+    margin-top: 200px;
+    border-radius: 4px;
+}
+.jd_win .jd_win_box .text_box{
+    line-height: 75px;
+    font-size: 18px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+.jd_win .jd_win_box .btn_box{
+    padding: 10px 0;
+}
+.jd_win .jd_win_box .btn_box a{
+    display: block;
+    width: 45%;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+.jd_win .jd_win_box .btn_box .cancel{
+ float: left;
+}
+.jd_win .jd_win_box .btn_box .submit{
+    float: right;
+    background-color: #d8505c;
+    color: #fff;
+}
+
+/*动画*/
+.jd_win .jd_win_box.bounceInDown{
+  animation: bounceInDown 1s;
+    -webkit-animation: bounceInDown 1s;
+}
+
+@-webkit-keyframes bounceInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-3000PX);
+        transform: translateY(-3000PX);
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: translateY(25px);
+        transform: translateY(25px);
+    }
+
+    75% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+
+    90% {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+
+    100% {
+        -webkit-transform: none;
+        transform: none;
+        opacity: 1;
+    }
+}
+@keyframes bounceInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-3000PX);
+        transform: translateY(-3000PX);
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: translateY(25px);
+        transform: translateY(25px);
+    }
+
+    75% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+
+    90% {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+    }
+
+    100% {
+        -webkit-transform: none;
+        transform: none;
+        opacity: 1;
+    }
+}
