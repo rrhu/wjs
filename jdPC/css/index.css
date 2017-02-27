@@ -1,0 +1,143 @@
+@charset"UTF-8";
+/*css初始化*/
+/*大的背景图开始*/
+.banner604{
+    position: relative;
+}
+.banner604 a{
+    position: absolute;
+    height: 453px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: url("../images/banner.jpg") no-repeat top center;
+}
+/*大的背景图结束*/
+.inner{
+    position: relative;
+    margin-top: 12px;
+    height: 460px;
+}
+.slider{
+    height: 453px;
+    width: 730px;
+    background-color: pink;
+    float:left;
+    margin-left:220px;
+    position: relative;
+}
+.circle{
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    margin-left:-66px;
+
+}
+.slider li {
+    float: left;
+    width: 18px;
+    background-color: #3E3E3E;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    margin: 0 2px;
+    color: #fff;
+}
+.slider li.current{
+    background-color: #B61B1F;
+}
+.arrow-l,.arrow-r{
+    width: 28px;
+    height: 62px;
+    position: absolute;
+    top:50%;
+ background-color: pink;
+    margin-top: -31px;
+    background: rgba(0,0,0,.2);
+}
+.arrow-l{
+    left: 0;
+}
+.arrow-r{
+    right: 0;
+}
+.arrow a{
+    font:500 18px/62px "宋体";
+    text-align: center;
+    color: #fff;
+}
+.news{
+    width:248px;
+    height: 451px;
+    border:1px solid #e4e4e4;
+    float:right;
+}
+.news-top{
+    height: 201px;
+}
+
+.news-top .dt2,.service .dt2{
+    height: 42px;
+    border-bottom: 1px dotted #E8E8E7;
+    font:14px/42px "微软雅黑";
+    padding-left: 15px;
+}
+.news-top h3{
+    float: left;
+}
+.news-top .dt2 a{
+    float: right;
+    margin-right: 16px;
+    font:13px/42px "宋体";
+
+}
+.news-top .dd2{
+    height: 143px;
+    border-bottom: 1px dashed #E4E4E4;
+    padding:7px 0;
+}
+.news-top li{
+    height: 28px;
+    line-height: 28px;
+    padding-left: 15px;
+}
+.news-top span{
+    font:700 13px/28px "微软雅黑";
+    margin-right: 5px;
+
+}
+.service{
+    height: 249px;
+}
+.service .dd2{
+    height: 207px;
+    overflow: hidden;
+}
+.service ul{
+    width: 252px;
+    height: 207px;
+}
+.service li{
+    height: 70px;
+    width: 62px;
+    float: left;
+    border: 1px solid #e4e4e4;
+    margin:-1px 0 0 -1px;
+}
+.service li a{
+    display: block;
+    height: 70px;
+    text-align: center;
+    padding-top: 44px;
+    position: relative;
+}
+.service-icon1 i{
+    position: absolute;
+    top: 12px;
+    left: 18px;
+    width: 25px;
+    height: 25px;
+    background: url("../images/spriteicon.png") no-repeat ;
+}
+
