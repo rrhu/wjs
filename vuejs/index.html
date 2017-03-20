@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="index.css"/>
+</head>
+
+<body>
+<div id="app">
+    <fieldset>
+        <legend>
+            Create New Person
+        </legend>
+        <div class="form-group">
+            <label FOR="personName">Name:</label>
+            <input type="text" v-model="newPerson.name" id="personName" placeholder="请输入姓名"/><span v-if="userName">用户名不能为空</span>
+        </div>
+        <div class="form-group">
+            <label for="personAge">Age:</label>
+            <input type="text" v-model="newPerson.age" id="personAge" placeholder="请输入年龄"/><span v-if="useAge">年龄必须是0-130之间的数字</span>
+        </div>
+        <div class="form-group">
+            <label>Sex:</label>
+            <select v-model="newPerson.sex">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label></label>
+            <button @click="createPerson">Create</button>
+        </div>
+    </fieldset>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(person, index) in people">
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.sex }}</td>
+            <td :class="'text-center'">
+                <button @click="deletePerson(index)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<script src="./vue.js"></script>
+<script>
+    //    数据本地存储的步骤，1.根据键获取值，如果是空，就返回一个数组，然后解析为json对象，给vw进行数据的暴露；
+    // 2，添加数据，新数据push到这个对象当中，然后再setItem（）键值的方式存入到本地，注意值必须格式化为字符串
+    // 3.删除数据，用splice（index,1）,删除数据之后，一定要把新的pData再setItem（）到本地中
+    //记住开始可以先用假数据，再用本地数据来进行替换
+    //      pData是获取本地存储的内容
+    var pData = JSON.parse(localStorage.getItem('personData') || '[ ]');
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            newPerson: {
+                name: '',
+                age: "",
+                sex: 'Male'
+            },
+            userName: false,
+            useAge: false,
+            people: pData
+        },
+        methods: {
+            createPerson: function () {
+                console.log(this.people);
+                var that = this.newPerson;
+                var age = parseInt(that.age);
+                console.log(this.people);
+
+                if (that.name == "") {
+                    this.userName = true;
+                    this.useAge = false;
+                    return false;
+                }
+                else if (!/\d{1,3}/.test(this.newPerson.age) || age < 0 || age >= 130) {
+                    this.userName = false;
+                    this.useAge = true;
+                    return false;
+                }
+                this.useAge = false;
+                // 添加数据
+                pData.push(that);
+                //   本地存储获取数据
+                localStorage.setItem('personData', JSON.stringify(pData));
+                console.log(this.newPerson);
+                // 添加完newPerson对象后，重置newPerson对象
+                this.newPerson = {name: '', age: "", sex: 'Male'}
+            },
+            deletePerson: function (index) {
+                // 删一个数组元素，并把新的pData存入到本地
+                pData.splice(index, 1);
+                localStorage.setItem('personData', JSON.stringify(pData));
+            }
+        }
+    })
+</script>
+
+</html>
